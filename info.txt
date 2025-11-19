@@ -1,0 +1,4 @@
+create a project to see f1 tracks, ebbr ground, etc
+pnpm create vite
+pnpm install three @react-three/fiber
+pnpm install @react-three/drei
