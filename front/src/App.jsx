@@ -28,12 +28,8 @@ function Scene() {
     <>
       <group>
         <Center top>
-              <BrowserRouter>
-<Routes>
-        <Route path="/tracks/:track" element={<Gates />} />
-        </Routes>
-        </BrowserRouter>
-        <Outlet/>
+          <Gates />
+          <Box position={[0, 0, 0]} />
         </Center>
         <CameraControls
           ref={cameraControlsRef}
@@ -44,6 +40,21 @@ function Scene() {
     </>
   )
 }
+
+/*
+          <BrowserRouter>
+            <Routes>
+              <Route path="/tracks/:track" element={<Gates />} />
+            </Routes>
+          </BrowserRouter>
+          <Outlet />
+          <Gates />
+
+          <Box position={[-1.2, 0, 0]} />
+          <Box position={[1.2, 0, 0]} />        
+
+*/
+
 
 function Ground() {
   const gridConfig = {
