@@ -4,17 +4,18 @@ export default function Gates() {
 
   const [data, setData] = useState();
 
+  const dataFetch = async () => {
+    console.log('before fetch')
+    const response = await fetch(`http://localhost:3000/gates/a`)
+    console.log('after fetch')
+    const data = await response.json()
+    console.log('after json')
+    console.log(data)
+}
+
+
   useEffect(() => {
-    // fetch data
-    const dataFetch = async () => {
-      const data = await (
-        await fetch(
-          'http://localhost:3000/gates/a',
-        )
-      ).json();
-      setData(data);
-    };
-    dataFetch();
+    dataFetch()
   }, []);
   
   console.log(data)
