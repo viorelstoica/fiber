@@ -2,29 +2,34 @@ import { useEffect, useState } from 'react'
 
 export default function Gates() {
 
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const dataFetch = async () => {
-    console.log('before fetch')
     const response = await fetch(`http://localhost:3000/gates/a`)
-    console.log('after fetch')
     const data = await response.json()
-    console.log('after json')
-    console.log(data)
-}
-
+    setData(data)
+    setLoading(false)
+  }
 
   useEffect(() => {
     dataFetch()
   }, []);
-  
-  console.log(data)
-  const meshList = data.gate.map((k, v) => <mesh id={k} position={[v.position.x,v.position.y,v.position.z]}><sphereGeometry args={[5, 4, 4]}/><meshStandardMaterial color={"blue"} /></mesh> )
-  return (
-    <>
-      <group position={[0, 0, 0]}>
-        {meshList}
-      </group>
-    </>
-  )
+
+  if (loading) {
+    return null
+  }
+  else {
+    return (
+      <>
+        <group position={[0, 0, 0]}>
+          {data.gate.map(m => <mesh key={m.id} position={[m.position.x,m.position.y,m.position.z]}><sphereGeometry args={[1, 4, 4]}/><meshStandardMaterial color={"blue"} /></mesh> )}
+        </group>
+      </>
+    )
+  }
 }
+
+/*
+{data.gate.map(m => <mesh key={m.id} position={[m.position.x,m.position.y,m.position.z]}><sphereGeometry args={[5, 4, 4]}/><meshStandardMaterial color={"blue"} /></mesh> )}
+*/

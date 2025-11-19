@@ -2,7 +2,11 @@ import * as THREE from 'three'
 import { memo, useRef, forwardRef } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { Grid, Center, AccumulativeShadows, RandomizedLight, Environment, useGLTF, CameraControls } from '@react-three/drei'
+import Box from './Box'
 import Gates from './Gates'
+import { Outlet, Route, Routes } from 'react-router'
+import { BrowserRouter } from "react-router";
+
 
 export default function App() {
   return (
@@ -24,10 +28,13 @@ function Scene() {
     <>
       <group>
         <Center top>
-          <Gates />
+              <BrowserRouter>
+<Routes>
+        <Route path="/tracks/:track" element={<Gates />} />
+        </Routes>
+        </BrowserRouter>
+        <Outlet/>
         </Center>
-        <Ground />
-        <Shadows />
         <CameraControls
           ref={cameraControlsRef}
           minDistance="0"

@@ -5,6 +5,11 @@ import cors from 'cors'
 const app = express();
 app.use(cors())
 
+app.use((req, res, next) => {
+  console.log('Time:', Date.now())
+  next()
+})
+
 app.get('/', async (req, res, next) => {
     res.status(200).send('Hello world')
 })
